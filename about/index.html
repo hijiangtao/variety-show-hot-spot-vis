@@ -1,0 +1,290 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>关于系统</title>
+<meta charset="utf-8">
+<!-- Bootstrap -->
+<link href="/variety-show-hot-spot-vis/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+<link href="/variety-show-hot-spot-vis/css/bootstrap.css" rel='stylesheet' type='text/css' />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<link href="/variety-show-hot-spot-vis/css/blue.css" rel="stylesheet" type="text/css" media="all" />
+<!----font-Awesome----->
+   	<link rel="stylesheet" href="/variety-show-hot-spot-vis/fonts/css/font-awesome.min.css">
+<!----font-Awesome----->
+<!-- start plugins -->
+<script type="text/javascript" src="/variety-show-hot-spot-vis/js/jquery.min.js"></script>
+<script type="text/javascript" src="/variety-show-hot-spot-vis/js/bootstrap.js"></script>
+<script type="text/javascript" src="/variety-show-hot-spot-vis/js/bootstrap.min.js"></script>
+<!-- Owl Carousel Assets -->
+<link href="/variety-show-hot-spot-vis/css/owl.carousel.css" rel="stylesheet">
+<script src="/variety-show-hot-spot-vis/js/owl.carousel.js"></script>
+		<script>
+			$(document).ready(function() {
+
+				$("#owl-demo").owlCarousel({
+					items : 4,
+					lazyLoad : true,
+					autoPlay : true,
+					navigation : true,
+					navigationText : ["", ""],
+					rewindNav : false,
+					scrollPerPage : false,
+					pagination : false,
+					paginationNumbers : false,
+				});
+
+			});
+		</script>
+		<!-- //Owl Carousel Assets -->
+<!-- start circle -->
+<script>
+(function($){
+	$.fn.percentPie = function(options){
+
+		var settings = $.extend({
+			width: 100,
+			trackColor: "EEEEEE",
+			barColor: "E2534B",
+			barWeight: 30,
+			startPercent: 0,
+			endPercent: 1,
+			fps: 60
+		}, options);
+
+		this.css({
+			width: settings.width,
+			height: settings.width
+		});
+
+		var	that = this,
+			hoverPolice = false,
+			canvasWidth = settings.width,
+			canvasHeight = canvasWidth,
+			id = $('canvas').length,
+			canvasElement = $('<canvas id="'+ id +'" width="' + canvasWidth + '" height="' + canvasHeight + '"></canvas>'),
+			canvas = canvasElement.get(0).getContext("2d"),
+			centerX = canvasWidth/2,
+			centerY = canvasHeight/2,
+			radius = settings.width/2 - settings.barWeight/2;
+			counterClockwise = false,
+			fps = 1000 / settings.fps,
+			update = .01;
+			this.angle = settings.startPercent;
+
+		this.drawArc = function(startAngle, percentFilled, color){
+			var drawingArc = true;
+			canvas.beginPath();
+			canvas.arc(centerX, centerY, radius, (Math.PI/180)*(startAngle * 360 - 90), (Math.PI/180)*(percentFilled * 360 - 90), counterClockwise);
+			canvas.strokeStyle = color;
+			canvas.lineWidth = settings.barWeight;
+			canvas.stroke();
+			drawingArc = false;
+		}
+
+		this.fillChart = function(stop){
+			var loop = setInterval(function(){
+				hoverPolice = true;
+				canvas.clearRect(0, 0, canvasWidth, canvasHeight);
+
+				that.drawArc(0, 360, settings.trackColor);
+				that.angle += update;
+				that.drawArc(settings.startPercent, that.angle, settings.barColor);
+
+				if(that.angle > stop){
+					clearInterval(loop);
+					hoverPolice = false;
+				}
+			}, fps);
+		}
+
+		this.mouseover(function(){
+			if(hoverPolice == false){
+				that.angle = settings.startPercent;
+				that.fillChart(settings.endPercent);
+			}
+		});
+
+		this.fillChart(settings.endPercent);
+		this.append(canvasElement);
+		return this;
+	}
+}(jQuery));
+
+$(document).ready(function() {
+
+	$('.google').percentPie({
+		width: 100,
+		trackColor: "E2534B",
+		barColor: "76C7C0",
+		barWeight: 20,
+		endPercent: .9,
+		fps: 60
+	});
+  
+  $('.moz').percentPie({
+		width: 100,
+		trackColor: "E2534B",
+		barColor: "76C7C0",
+		barWeight: 20,
+		endPercent: .75,
+		fps: 60
+	});
+  
+  $('.safari').percentPie({
+		width: 100,
+		trackColor: "E2534B",
+		barColor: "#76C7C0",
+		barWeight: 20,
+		endPercent: .5,
+		fps: 60
+	});
+    
+});
+</script>
+</head>
+<body>
+<div class="header_bg">
+	<div class="container">
+		<div class="header">
+			<div class="logo">
+				<a href="/variety-show-hot-spot-vis/"><img src="/variety-show-hot-spot-vis/images/logo.png" alt=""/></a>
+			</div>
+			<div class="h_menu">
+				<a id="touch-menu" class="mobile-menu" href="#">目录 / Menu</a>
+				<nav>
+				<ul class="menu list-unstyled">
+					<li><a href="/variety-show-hot-spot-vis/">主页 / Homepage</a></li>
+					<li><a href="/variety-show-hot-spot-vis/feature/">数据 / Data</a></li>
+					<li><a href="">主题 / Theme</a>
+						<ul class="sub-menu list-unstyled">
+							<li><a href="/variety-show-hot-spot-vis/system/program/heat-of-program.html">电视节目网络热度分析</a></li>
+							<li><a href="/variety-show-hot-spot-vis/system/program/interaction-of-program.html">新媒体中的节目互动评估</a></li>
+							<li><a href="/variety-show-hot-spot-vis/system/program/tracing-of-program.html">电视节目微博数据解读</a></li>
+							<li><a href="/variety-show-hot-spot-vis/system/program/personality-analytics.html">节目参与嘉宾性格分析</a></li>
+							<li><a href="/variety-show-hot-spot-vis/system/program/hot-issue-mining.html">电视节目热点事件挖掘</a></li>
+						</ul>
+					</li>
+					<li><a href="/variety-show-hot-spot-vis/about/">关于 / About</a></li>
+					<li><a href="/variety-show-hot-spot-vis/contact/">联系 / Contact</a></li>
+				</ul>
+				</nav>
+			<script src="/variety-show-hot-spot-vis/js/menu.js" type="text/javascript"></script>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>
+<div class="main_bg"><!-- start main -->
+<div class="container">
+	<div class="main_grid1">
+		<h3 class="style pull-left">关于系统</h3>
+		<ol class="breadcrumb pull-right">
+		  <li><a href="/variety-show-hot-spot-vis/">Home</a></li>
+		  <li class="active">about system</li>
+		</ol>
+		<div class="clearfix"></div>
+	</div>
+</div>
+</div>
+<div class="main_btm1"><!-- start main_btm -->
+<div class="container">
+	<div class="main about span_of_3">
+		<h3>团队简介 / Group Intro</h3>
+		<p class="para">Data.BIT团队由北京理工大学软件学院三名2011级本科生组成，组长江涛，组员施盟捷、刘果，指导老师汤海京。团队于2014年7月底成立，关注综艺节目可视化分析方面，以《爸爸去哪儿》第二季的相关数据为依托，以Data-Driven Documents、Enterprise Charts以及关联分析算法为可视化与挖掘技术支持，开发出此款融合社交网络数据挖掘的电视节目可视化分析系统。系统采用敏捷开发流程，第一阶段工作于2014年8月16日结束。
+		<hr/></p>
+		<h3>技术背景 / Tech Background</h3>
+		<p class="para">大数据时代，通过数据挖掘，可以对数据库中的大量业务数据进行抽取、转换、分析和其他模型化处理，从而提取辅助商业决策的关键性信息。但是，当前数据可视化工具的种类、质量和灵活性较大地影响了数据挖掘系统的使用、解释能力和吸引力。丰富而灵活的数据挖掘结果可视化技术使抽象的信息以简明的形式呈现出来，加深用户对数据含义的理解，更好地了解数据之间的相互关系和发展趋势。<br />
+		数据可视化技术凭借计算机的强大处理能力以及计算机图像和图形学基本算法以及可视化算法把数据转换为静态或动态图或图形呈现在人们的面前，并允许通过交互手段控制数据的抽取和画面的显示，使隐含于数据之中不可见的现象成为可见，为人们分析、理解数据、形成概念、找出规律提供了强有里的手段。可视化技术已经成为数据挖掘不可或缺的一部分。<br />
+		<hr/></p>
+		<h3>项目背景 / Project Background</h3>
+		<p class="para">在当下生活节奏越来越紧张的社会背景下，人们由于面临着来自各方各面的各种压力，于是使得解压娱乐成了不可或缺非常重要的生活一面。而由此催生的各种电视节目则作为减压娱乐中非常重要的一个组成部分，活跃在广大用户群体中。<br />
+
+		在社交网络上，围绕电视节目展开的讨论明显增加了网站的访问量，更重要的是，这将会带来可观的广告收入。有调查显示，关于电视节目的讨论，80%为口耳相传，10%发生在电话交谈里，而余下的10%则发生在线上。在大数据时代，任何当下发生在线上的事儿都有可能变成未来的现金流。因而，社交网络，这个互联网时代重要的参与者，正在将营收的版图扩展至电视领域。<br />
+
+		由于拥有广大的收视群体与受众，所以商业广告作为其背后潜藏着巨大的机会，一直被电视行业所重视。站在广告商的角度来看，现在亟待解决的问题无非是如何量化与评判热门电视节目、如何确保自己的投入有成比例的产出、如何以最大的性价比投入来达到推广自己的目的，而这些事情的评判在大数据爆炸的当下则变得越来越困难；另一方面在广电行业看来，随着电视节目数量上的成倍增加，如何获得稳定且高水平的用户群体成为各个电视台关注的焦点，而另一方面由于人们的审美水平不断提升，优质的节目内容则越来越被受到重视，如何有效的获得最真实的反馈、做出更受欢迎的优质节目以及及时获取节目的各种表现数据成为当下工作中的重中之重。<br />
+
+		随着数据爆炸式的增长，我们无疑正在迎接大数据时代的到来。在这样的一个时代，信息的总体价值无疑正在变得越来越巨大，但要想挖掘出最有用的价值与资源信息也在变得越来越困难。所以，如何获取数据以及如何快速地从数据中挖掘出有用信息正在被人们广泛关注。为了解决如上各种现实问题以达到各方利益的最大化，开发出广电行业适用的大数据应用平台正在被各方所广泛期待。<br />
+
+		</p>
+		<div class="clearfix"></div>
+	</div>
+</div>
+</div>
+<div class="footer_bg"><!-- start footer -->
+	<div class="container">
+		<div class="footer">
+			<div class="col-md-4 footer1_of_3">
+				<div class="f_logo">
+					<a href="/variety-show-hot-spot-vis/"><img src="/variety-show-hot-spot-vis/images/logo.png" alt=""/></a>
+				</div>		
+				<p class="f_para">大数据时代，通过数据挖掘可以对数据库中的大量数据进行抽取、转换、分析和其他模型化处理，从而提取辅助商业决策的关键性信息。本系统以《爸爸去哪儿》电视节目为分析背景，是Data.BIT参赛队根据第三届中国软件杯大赛“数据挖掘可视化”赛题准备的一套从数据采集到数据可视化一系列的全套数据处理平台，通过融合强大的数据可视化技术，让数据挖掘过程门槛大大降低，任何人都可以读懂挖掘的全过程。</p>
+			</div>
+			<div class="col-md-2 footer1_of_3">
+				<h4>Feature</h4>
+				<ul class="list-unstyled f_list">
+					<li><a href="#">轻量秒级出图</a></li>
+					<li><a href="#">多样式可视化图表</a></li>
+					<li><a href="#">可视化人机交互</a></li>
+					<li><a href="#">多终端可视化呈现</a></li>
+					<li><a href="#">可视分析与挖掘</a></li>
+				</ul>
+			</div>
+			<div class="col-md-2 footer1_of_3">
+				<h4>System</h4>
+				<ul class="list-unstyled f_list">
+					<li><a href="/variety-show-hot-spot-vis/system/program/heat-of-program.html">电视节目网络热度分析</a></li>
+					<li><a href="/variety-show-hot-spot-vis/system/program/interaction-of-program.html">新媒体中的节目互动评估</a></li>
+					<li><a href="/variety-show-hot-spot-vis/system/program/tracing-of-program.html">电视节目微博数据解读</a></li>
+					<li><a href="/variety-show-hot-spot-vis/system/program/personality-analytics.html">节目参与嘉宾性格分析</a></li>
+					<li><a href="/variety-show-hot-spot-vis/system/program/hot-issue-mining.html">电视节目热点事件挖掘</a></li>
+				</ul>
+			</div>
+			<div class="col-md-4 footer_of_3">
+				<h4><span>DATA THEME</span></h4>
+				<div class="blog_list">
+					<div class="col-md-3 f_pic">
+						<a href="/variety-show-hot-spot-vis/system/program/heat-of-program.html"><img src="/variety-show-hot-spot-vis/images/blog_pic1.jpg" alt="" class="img-responsive"/></a>	
+					</div>
+					<div class="col-md-9 f_text">
+						<a href="/variety-show-hot-spot-vis/system/program/heat-of-program.html"><p>电视节目网络热度分析主题</p></a>
+						<span>8, August 2014</span>
+					</div>
+					<div class="clearfix"></div>
+				</div><hr>
+				<div class="blog_list">
+					<div class="col-md-3 f_pic">
+						<a href="/variety-show-hot-spot-vis/system/program/hot-issue-mining.html"><img src="/variety-show-hot-spot-vis/images/blog_pic2.jpg" alt="" class="img-responsive"/></a>
+					</div>
+					<div class="col-md-9 f_text">
+						<a href="/variety-show-hot-spot-vis/system/program/hot-issue-mining.html"><p>中国电视节目热点事件挖掘主题</p></a>
+						<span>16, August 2014</span>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>
+<div class="footer1_bg"><!-- start footer1 -->
+	<div class="container">
+		<div class="footer1">
+			<div class="copy pull-left">
+				<p class="link">Copyright &copy; 2014. Data.BIT All rights reserved. <a target="_blank" href="http://hijiangtao.github.io/">Contact us</a></p>
+			</div>
+			<div class="soc_icons pull-right">
+				<ul class="list-unstyled text-center">
+					<li><a href="http://weibo.com/BITED"><i class="fa fa-weibo"></i></a></li>
+					<li><a href="http://www.linkedin.com/in/hijiangtao"><i class="fa fa-linkedin"></i></a></li>
+					<li><a href="http://hijiangtao.github.io/variety-show-hot-spot-vis/"><i class="fa fa-circle-o-notch"></i></a></li>
+					<li><a href="mailto:hijiangtao@gmail.com"><i class="fa fa-envelope-square"></i></a></li>
+				</ul>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+	</div>
+</div>
+
+</body>
+</html>
