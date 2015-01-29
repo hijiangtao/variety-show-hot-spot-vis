@@ -916,7 +916,7 @@ var axisData = [
 	  .append("g")
 		.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-	d3.json("/vis/data/at.json", function(miserables) {
+	d3.json("/variety-show-hot-spot-vis/data/at.json", function(miserables) {
 	  var matrix = [],
 		  nodes = miserables.nodes,
 		  n = nodes.length;
